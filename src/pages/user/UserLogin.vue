@@ -57,9 +57,8 @@ const loginUserStore = useLoginUserStore()
 const login = async () => {
   const res = await userLoginUsingPost(userLoginForm)
   if (res.data.code === 0) {
-    await loginUserStore.fetchLoginUser()
+    loginUserStore.setLoginUser(res.data.data)
     console.log('登录时', loginUserStore.loginUser)
-    message.success('success')
     router.push({ path: '/', replace: true })
   }
 }
